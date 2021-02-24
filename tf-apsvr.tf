@@ -13,7 +13,7 @@ resource "google_compute_network" "vpc-net"{
 resource "google_compute_subnetwork" "vpc-subnet" {
   name = var.vpc-subnet
   region = var.region
-  ip_cidr_range="10.26.2.0/24"
+  ip_cidr_range="10.25.1.0/24"
   depends_on    = [google_compute_network.vpc-net]
   network= var.vpc-name
 }
@@ -35,7 +35,7 @@ resource "google_compute_firewall" "vpcf" {
 resource "google_compute_instance_template" "tmp1" {
   name = var.mig-tmp-name
   machine_type            = var.vm-machine_type
-  metadata_startup_script = file("wp.sh")
+  metadata_startup_script = file("wpss.sh")
   region                  = var.region
   tags = [ "http-server"]
 
